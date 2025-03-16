@@ -16,7 +16,8 @@ The model is based on the TinyVGG architecture. Learn more about it here:\
 
 ## 🎯 Model Performance
 
-- Achieved **98.5% accuracy** on the test dataset.
+- Achieved **100% accuracy** on the test dataset from Kaggle.
+- In real-time webcam detection, the model takes approximately **2 seconds per classification** due to processing time.
 
 ## 📦 Requirements
 
@@ -29,60 +30,19 @@ pip install -r requirements.txt
 Or manually install:
 
 ```bash
-pip install torch torchvision numpy pandas matplotlib pathlib pillow torchinfo tqdm
+pip install torch torchvision torchinfo numpy pandas matplotlib tqdm Pillow pathlib scikit-learn opencv-python cvzone
 ```
 
-## 🚀 How to Run
+## 🚀 Real-Time ASL Detection
 
-### 1️⃣ Clone the Repository
+The real-time ASL detection is implemented using OpenCV for webcam capture and the **cvzone** library for hand tracking. The system detects a hand, crops the region of interest, preprocesses it, and feeds it into the trained TinyVGG model for classification. The detected sign is then displayed on the webcam feed. 
 
-```bash
-git clone <repo-link>
-cd <repo-folder>
-```
-
-### 2️⃣ Train the Model
-
-Run the Jupyter Notebook to train the model:
-
-```bash
-jupyter notebook
-```
-
-Open and execute the training notebook.
-
-### 3️⃣ Inference
-
-Load the trained model (`.pth` file) and run inference on new images.
-
-```python
-import torch
-from PIL import Image
-from torchvision import transforms
-
-# Load model
-model = torch.load("model.pth")
-model.eval()
-
-# Preprocess image
-transform = transforms.Compose([
-    transforms.Resize((64, 64)),
-    transforms.ToTensor()
-])
-img = Image.open("path/to/image.jpg")
-img = transform(img).unsqueeze(0)
-
-# Predict
-output = model(img)
-prediction = torch.argmax(output, dim=1)
-classes = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "nothing", "space"]
-print(f"Predicted Class: {classes[prediction.item()]}")
-```
+While the model performs exceptionally well on the test dataset, real-time classification takes around **2 seconds per frame**, likely due to preprocessing, model inference time, and system limitations.
 
 ## 🔥 Future Improvements
 
-- Implement real-time sign language detection using a webcam.
-- Optimize model for better performance and efficiency.
+- Optimize real-time detection speed to improve responsiveness.
+- Deploy the model as a lightweight web or mobile application.
 
 ## ⚡ GPU Used
 
