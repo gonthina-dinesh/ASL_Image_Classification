@@ -8,3 +8,5 @@ tqdm
 Pillow
 pathlib
 scikit-learn
+opencv-python 
+cvzone
