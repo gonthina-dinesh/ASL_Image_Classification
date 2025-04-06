@@ -16,7 +16,7 @@ The model is based on the TinyVGG architecture. Learn more about it here:\
 
 ## 🎯 Model Performance
 
-- Achieved **100% accuracy** on the test dataset from Kaggle.
+- Achieved **99% accuracy** on the test dataset from Kaggle.
 - In real-time webcam detection, the model takes approximately **2 seconds per classification** due to processing time.
 
 ## 📦 Requirements
